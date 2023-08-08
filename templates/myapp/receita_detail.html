@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalhe{% endblock %}
+{% block header %}{% endblock header %}
+
+{% block content %}
+<div class="container">
+    <div class="row ">
+        <h1 class="titulo-detail">{{receita.titulo| title}}</h1>
+        <div class="div-imagem-detail col-md-8">
+        <img class="imagem-detail" src="{{ receita.imagem.url }}">
+        </div>
+        <div class="col-sm-6 detail-info">
+            <h3>Informações: </h3>
+            <hr>
+            <p><strong>Autor:</strong> {{receita.autor|title}}</p>
+            <table>
+                <tr class="tr-strong">
+                  <td>Dificuldade</td>
+                  <td>Rendimento</td>
+                  <td>Categoria</td>
+                </tr>
+                <tr>
+                <td>{{receita.dificuldade|title}}</td>
+                {% if receita.rendimento != 1 %}
+                    <td>{{ receita.rendimento }} porções</td>
+                {% else %}
+                    <td>{{ receita.rendimento }} porção</td>
+                {% endif %}
+                  <td>{{receita.categoria|title}}</td>
+                </tr>
+              </table>
+        </div>
+        <div class="col-md-8">
+            <h3>Ingredientes:</h3>
+            <hr>
+            <ul>
+                {% for ing in receita.ingredientes %}
+                    <li class="lista-detail">{{ing|capfirst}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% if receita.dica %}
+        <div class="col-sm-4 div-dica">
+            <h5>Dica!!!</h5>
+             <p>{{ receita.dica }}</p>
+        </div>
+        {% endif %}
+
+        <div class="col-md-8">
+            <h3>Modo de Preparo:</h3>
+            <hr>
+            <div class="modo-de-preparo">
+                {{receita.modo_de_preparo|safe}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

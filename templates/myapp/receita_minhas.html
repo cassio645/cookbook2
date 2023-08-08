@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Minhas receitas{% endblock %}
+
+{% block content %}
+<div class="container-fluid minha-page">
+    <div class="row">
+        <div class="col-md-16">
+            <div class="center">
+                <div class="col-md-6 perfil">
+                    <h2>Sobre mim</h2>
+                    <hr>
+                    <table class="table-perfil">
+                        <tr>
+                            <td><strong>Nome:</strong> {{user}}</td>
+                            <td><strong>Email:</strong> {{user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Receitas criadas: </strong>{{ receitas.count }}</td>
+                            <td><strong>Desde: </strong>{{user.date_joined|date:"d/m/Y"}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% if receitas %}
+            <h1 id="title-minhas">MINHAS RECEITAS</h1>
+        {% else %}
+            <h1 class="sem-receita">Você ainda não criou nenhuma receita.</h1>
+        {% endif %}
+
+            {% for receita in receitas %}
+                <div class="col-md-4 blocos-receita">
+                    <div class="bloco-info-receita">
+                    <a href="/{{receita.id}}/"><img src="{{ receita.imagem.url }}" class="imagem-comida"></a>
+                        <a href="/{{receita.id}}/">
+                            <p class="titulo-comida">{{receita.titulo| title}}</p>
+                            <hr>
+                            <table class="info-receita">
+                                <tr>
+                                    <td class="td-title">Dificuldade:</td>
+                                    <td>{{ receita.dificuldade|title }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">Rendimento:</td>
+                                    {% if receita.rendimento != 1 %}
+                                        <td>{{ receita.rendimento|title}} porções</td>
+                                    {% else %}
+                                        <td>{{ receita.rendimento|title}} porção</td>
+                                    {% endif %}
+                                </tr>
+                            </table>
+                    </a>
+                        <div class="botoes">
+                            <a href="{% url 'receitas:editar' pk=receita.id %}">
+                                <input type="submit" value="Editar" class="btn btn-warning" id="editar">
+                            </a>
+                            <button class="btn btn-danger" onclick="deleteFunction('{{receita.id}}', '{{receita.titulo}}')">Apagar</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> <i class="bi bi-arrow-left"></i></a>
+        {% endif %}
+        <span>{{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"> <i class="bi bi-arrow-right"></i></a>
+        {% endif %}
+    </div>
+
+{% endblock %}

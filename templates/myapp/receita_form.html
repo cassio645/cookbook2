@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Criar{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    #div_id_dica{
+        display: none;
+        padding-top: 10px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 bloco-criar">
+            <h1>Criar nova receita</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form|crispy }}
+                <label for="dica"><strong>Gostaria de adicionar uma dica?</strong></label> <br>
+                <input type="radio" id="dica-nao" name="dica" value="nao" onclick="mudarCss()" checked>
+                <label for="dica-nao">Não</label>
+                <input type="radio" id="dica-sim" name="dica" value="sim" onclick="mudarCss()">
+                <label for="dica-sim">Sim</label><br>  
+                <input class="btn btn-primary" type="submit" value="Criar">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

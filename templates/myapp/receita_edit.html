@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Editar {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 bloco-criar">
+            <h1>{{object.titulo|title}}</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.media }}
+                {{form|crispy}}
+                <input class="btn btn-primary" type="submit" value="Atualizar">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Página inicial{% endblock %}
+
+
+{% block content %}
+<img class="header-img" src="{% static 'img/head2.jpeg' %}">
+<div class="container-fluid home-page">
+        <div class="row">
+            <div class="col-md-16">
+                <h1 id="title-home">LISTA DE RECEITAS</h1>
+                <div class="div-search col-md-6">
+                    <h5 class="title-categoria">Categorias</h5>
+                        <div class="dropdown btn-drop">
+                            <button class="btn btn-primary dropdown-toggle  btn-block btn-md m-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-filter-right"></i> Filtrar
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                {% for cat in categorias %}
+                                <li><a class="dropdown-item link-categoria" href="{{ cat.get_absolute_url}}">
+                                    {{ cat.nome|title }}
+                                </a></li>
+                                {% endfor %}
+                            </ul>
+                          </div>
+
+                </div>
+
+            </div>
+            {% for receita in receitas %}
+                <div class="col-md-4 blocos-receita">
+                    <div class="bloco-info-receita">
+                    <a href="/{{receita.id}}/"><img src="{{ receita.imagem.url }}" class="imagem-comida"></a>
+
+                        <a href="/{{receita.id}}/">
+                            <p class="titulo-comida">{{receita.titulo| title}}</p>
+                            <hr>
+                            <table class="info-receita">
+                                <tr>
+                                    <td class="td-title">Categoria:</td>
+                                    <td>{{ receita.categoria|title }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-title">Rendimento:</td>
+                                    {% if receita.rendimento != 1 %}
+                                        <td>{{ receita.rendimento }} porções</td>
+                                    {% else %}
+                                        <td>{{ receita.rendimento }} porção</td>
+                                    {% endif %}
+                                </tr>                                <tr>
+                                    <td class="td-title">Dificuldade:</td>
+                                    <td>{{ receita.dificuldade|title }}</td>
+                                </tr>
+                            </table>
+                        </a>
+                    <p class="info-receita"><strong>Autor: </strong>{{receita.autor|title}}</p>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}"> <i class="bi bi-arrow-left"></i></a>
+    {% endif %}
+    <span> {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"><i class="bi bi-arrow-right"></i></a>
+    {% endif %}
+</div>
+{% endblock %}
