@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'vercel_app.urls'
+ROOT_URLCONF = 'config_app.urls'
 
 TEMPLATES = [
     {
@@ -67,13 +67,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'vercel_app.wsgi.app'
+WSGI_APPLICATION = 'config_app.wsgi.app'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 # Note: Django modules for using databases are not support in serverless
-# environments like Vercel. You can use a database over HTTP, hosted elsewhere.
+# environments like config. You can use a database over HTTP, hosted elsewhere.
 
 DATABASES = {
     'default': dj_database_url.parse(config("POSTGRES_URL"))
