@@ -4,7 +4,7 @@ from django.shortcuts import redirect, get_object_or_404, render
 
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-from .helpers import ImagekitClient
+from .helpers import ImagekitClient, ImagekitDelete
 from django.urls import reverse_lazy
 
 from .models import Receita, Categoria
@@ -62,19 +62,29 @@ class DetalheView(DetailView):
 
 @login_required
 def criar_view(request):
+
+    # SE o método for um post carrega o formulário com as informações dele
     if request.method == 'POST':
         form = ReceitaForm(request.POST)
+
+        # Se o formulário for válido(preenchido corretamente)
         if form.is_valid():
             receita = form.save(commit=False)
             receita.autor = request.user
 
+            # IMAGEKIT pega a imagem da receita
             file = request.FILES.get("file")
             
+            # Faz upload dela no imagekit e retorna a URL da imagem
             imgkit = ImagekitClient(file)
             response =  imgkit.upload_media_file()
             receita.imagem = response['url']
-            #receita.file_id = response['fileId']
+            receita.file_id = response['fileId']
 
+            ###########################################
+            print('---------------------------------------\n',response)
+
+            # For para pegar todos os ingredientes da receita e transformar num array
             ingredients = request.POST.getlist('ingredientes')  # Use 'ingredientes' em vez de 'ingredient'
             ingredient_list = [ingredient.strip() for ingredient in ingredients if ingredient.strip()]
             receita.ingredientes = ingredient_list
@@ -83,26 +93,63 @@ def criar_view(request):
 
             return redirect('receitas:home')
     else:
+        # SE o método for um GET envia o formulário vazio para ser preenchido
         form = ReceitaForm()
   
     return render(request, 'myapp/receita_form.html', {'form': form})
 
 
-@method_decorator(login_required, name="dispatch")
-class EditarView(UpdateView):
-    model = Receita
-    form_class = ReceitaForm
-    template_name = "myapp/receita_edit.html"
-    success_url = reverse_lazy('receitas:home')
+
+@login_required
+def editar_view(request, pk):
+    receita = Receita.objects.get(pk=pk)
+    print(receita.file_id)
+    
+
+    if request.method == 'POST':
+        form = ReceitaForm(request.POST, instance=receita)
+        if form.is_valid():
+
+            # IMAGEKIT pega a imagem da receita
+            file = request.FILES.get("file")
+
+            # Se houver uma nova imagem
+            if file:
+            
+                # Apaga a imagem antiga da receita
+                update = ImagekitDelete(receita.file_id)
+                update.delete_image()
+                
+                # Coloca a nova imagem na receita
+                imgkit = ImagekitClient(file)
+                response =  imgkit.upload_media_file()
+                receita.imagem = response['url']
+                receita.file_id = response['fileId']
+
+            form.save()
+            return redirect('receitas:home')
+    else:
+        form = ReceitaForm(instance=receita)
+
+    return render(request, 'myapp/receita_edit.html', {'form': form})
+
 
 @login_required()
 def delete_receita(request, pk):
+
+    # Pega a receita que vai ser deletada e o usuário que esta querendo deleta-la
     receita = Receita.objects.get(pk=pk)
     user = User.objects.get(username=request.user)
 
     user_delete = str(user).lower().strip()
     autor_receita = str(receita.autor).lower().strip()
+
+    # Se o usuário for o mesmo autor da receita ele permite, caso contrário só retorna pra página minhas_receitas
     if autor_receita == user_delete:
+
+        # Apaga a imagem antiga da receita e apaga a receita toda
+        update = ImagekitDelete(receita.file_id)
+        update.delete_image()
         receita.delete()
     return redirect('receitas:minhas')
 
