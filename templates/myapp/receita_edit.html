@@ -7,12 +7,50 @@
     <div class="row">
         <div class="col-md-6 bloco-criar">
             <h1>{{object.titulo|title}}</h1>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form.media }}
-                {{form|crispy}}
-                <input class="btn btn-primary" type="submit" value="Atualizar">
-            </form>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}    
+
+                    <div id="div_id_titulo" class="form-group"> <label for="id_titulo" class=" requiredField">
+                        Titulo<span class="asteriskField">*</span> </label> <div class=""> {{ form.titulo }} </div> </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="id_dificuldade" class="requiredField">Dificuldade<span class="asteriskField">*</span></label>
+                            {{ form.dificuldade }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_categoria" class="requiredField">Categoria<span class="asteriskField">*</span></label>
+                            {{ form.categoria }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="id_rendimento" class="requiredField">Rendimento<span class="asteriskField">*</span></label>
+                            {{ form.rendimento }}
+                        </div>
+                    </div>
+                        
+                        
+                    <label for="file" class=" requiredField">Imagem<span class="asteriskField">*</span> </label>
+                    <input type="file" name="file" class="form-control col-md-3" id="file" required>
+                    
+                    <div id="div_id_ingredientes" class="form-group"> 
+                        <label for="id_ingredientes" class=" requiredField">Ingredientes<span class="asteriskField">*</span></label> <div class="">{{ form.ingredientes }}</div>
+                    </div>
+
+                    <label for="id_modo_de_preparo" class=" requiredField">Modo de preparo<span class="asteriskField">*</span> </label>
+                    <div class="">{{ form.modo_de_preparo }}</div>
+                    
+
+                    
+
+                    <label for="dica"><strong>Gostaria de adicionar uma dica?</strong></label> <br>
+                    <input type="radio" id="dica-nao" name="dica" value="nao" onclick="mudarCss()" checked>
+                    <label for="dica-nao">Não</label>
+                    <input type="radio" id="dica-sim" name="dica" value="sim" onclick="mudarCss()">
+                    <label for="dica-sim">Sim</label><br> 
+                    {{ form.dica }}
+                    <input class="btn btn-primary" type="submit" value="Atualizar">
+                </form>
         </div>
     </div>
 </div>

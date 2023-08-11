@@ -29,7 +29,7 @@ class Receita(models.Model):
     dificuldade = models.CharField(max_length=8, choices=DIFICULDADE)
     rendimento = models.PositiveSmallIntegerField(help_text="Nº de porções")
     imagem = models.URLField(max_length=1000, verbose_name="Imagem")
-    #file_id = models.CharField(max_length=255)
+    file_id = models.CharField(max_length=255)
     ingredientes = ArrayField(models.TextField())
     modo_de_preparo = RichTextField()
     dica = models.CharField(max_length=300, null=True, blank=True)
