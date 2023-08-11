@@ -30,7 +30,7 @@
             {% for receita in receitas %}
                 <div class="col-md-4 blocos-receita">
                     <div class="bloco-info-receita">
-                    <a href="/{{receita.id}}/"><img src="{{ receita.imagem.url }}" class="imagem-comida"></a>
+                    <a href="/{{receita.id}}/"><img src="{{ receita.imagem }}" class="imagem-comida"></a>
 
                         <a href="/{{receita.id}}/">
                             <p class="titulo-comida">{{receita.titulo| title}}</p>
@@ -60,13 +60,15 @@
     </div>
 </div>
 
-<div class="pagination">
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}"> <i class="bi bi-arrow-left"></i></a>
-    {% endif %}
-    <span> {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}"><i class="bi bi-arrow-right"></i></a>
-    {% endif %}
-</div>
+{% if page_obj.has_previous or page_obj.has_next %}
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> <i class="bi bi-arrow-left"></i></a>
+        {% endif %}
+        <span> {{ page_obj.number }} de {{ page_obj.paginator.num_pages }} </span>
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"><i class="bi bi-arrow-right"></i></a>
+        {% endif %}
+    </div>
+{% endif %}
 {% endblock %}

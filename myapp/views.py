@@ -1,8 +1,10 @@
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, get_object_or_404, render
+
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
+from .helpers import ImagekitClient
 from django.urls import reverse_lazy
 
 from .models import Receita, Categoria
@@ -58,16 +60,32 @@ class DetalheView(DetailView):
     queryset = Receita.objects.all()
 
 
-@method_decorator(login_required, name="dispatch")
-class CriarView(CreateView):
-    model = Receita
-    form_class = ReceitaForm
-    success_url = reverse_lazy("receitas:home")
+@login_required
+def criar_view(request):
+    if request.method == 'POST':
+        form = ReceitaForm(request.POST)
+        if form.is_valid():
+            receita = form.save(commit=False)
+            receita.autor = request.user
 
-    def form_valid(self, form):
-        # pega o usuário logado atualmente e coloca como autor da receita
-        form.instance.autor = self.request.user
-        return super(CriarView, self).form_valid(form)
+            file = request.FILES.get("file")
+            
+            imgkit = ImagekitClient(file)
+            response =  imgkit.upload_media_file()
+            receita.imagem = response['url']
+            #receita.file_id = response['fileId']
+
+            ingredients = request.POST.getlist('ingredientes')  # Use 'ingredientes' em vez de 'ingredient'
+            ingredient_list = [ingredient.strip() for ingredient in ingredients if ingredient.strip()]
+            receita.ingredientes = ingredient_list
+
+            receita.save()
+
+            return redirect('receitas:home')
+    else:
+        form = ReceitaForm()
+  
+    return render(request, 'myapp/receita_form.html', {'form': form})
 
 
 @method_decorator(login_required, name="dispatch")

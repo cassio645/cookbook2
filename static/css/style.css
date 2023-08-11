@@ -233,6 +233,10 @@ table {
     margin-right: auto;
 }
 
+.form-control{
+    margin-bottom: 20px;
+}
+
 #hint_id_ingredientes{
     font-weight: 500;
 }
