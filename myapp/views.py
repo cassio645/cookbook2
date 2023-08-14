@@ -66,6 +66,7 @@ def criar_view(request):
     # SE o método for um post carrega o formulário com as informações dele
     if request.method == 'POST':
         form = ReceitaForm(request.POST)
+        print(form)
 
         # Se o formulário for válido(preenchido corretamente)
         if form.is_valid():
@@ -81,13 +82,10 @@ def criar_view(request):
             receita.imagem = response['url']
             receita.file_id = response['fileId']
 
-            ###########################################
-            print('---------------------------------------\n',response)
 
             # For para pegar todos os ingredientes da receita e transformar num array
-            ingredients = request.POST.getlist('ingredientes')  # Use 'ingredientes' em vez de 'ingredient'
-            ingredient_list = [ingredient.strip() for ingredient in ingredients if ingredient.strip()]
-            receita.ingredientes = ingredient_list
+            ingredientes = request.POST.getlist('ingredientes')
+            receita.ingredientes = ingredientes
 
             receita.save()
 
@@ -99,16 +97,22 @@ def criar_view(request):
     return render(request, 'myapp/receita_form.html', {'form': form})
 
 
-
 @login_required
 def editar_view(request, pk):
     receita = Receita.objects.get(pk=pk)
-    print(receita.file_id)
-    
 
     if request.method == 'POST':
         form = ReceitaForm(request.POST, instance=receita)
+
         if form.is_valid():
+            receita = form.save(commit=False)
+            receita.autor = request.user
+
+            # Atualiza os ingredientes com os novos valores/alterações
+            combined_ingredients = request.POST.get("combined_ingredients")
+            ingredientes = combined_ingredients.split(", ") if combined_ingredients else []
+            receita.ingredientes = ingredientes
+
 
             # IMAGEKIT pega a imagem da receita
             file = request.FILES.get("file")
@@ -126,12 +130,12 @@ def editar_view(request, pk):
                 receita.imagem = response['url']
                 receita.file_id = response['fileId']
 
-            form.save()
+            receita.save()
             return redirect('receitas:home')
     else:
         form = ReceitaForm(instance=receita)
 
-    return render(request, 'myapp/receita_edit.html', {'form': form})
+    return render(request, 'myapp/receita_edit.html', {"receita": receita, "form": form})
 
 
 @login_required()

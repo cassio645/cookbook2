@@ -128,14 +128,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# configuracao do ckeditor
+# Configurações do editor de texto
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
+     
         'toolbar_Custom': [
-            ['Bold',],
+
+            {'name': 'editing', 'items': ['Preview', 'Find', 'Replace', ]},
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList']},
+            {'name': 'links', 'items': ['Link']},
+            {'name': 'styles', 'items': ['Format']},
+            '/',  # put this to force next toolbar on new line
         ],
-        "height": '100%', "width": '100%',
+        'toolbar': 'Custom',  # put selected toolbar config here
+        'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        'tabSpaces': 4     
     }
 }
 

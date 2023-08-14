@@ -54,22 +54,26 @@
                 <label for="file" class=" requiredField">Imagem<span class="asteriskField">*</span> </label>
                 <input type="file" name="file" class="form-control col-md-3" id="file" required>
                 
+        
                 <div id="div_id_ingredientes" class="form-group"> 
-                    <label for="id_ingredientes" class=" requiredField">Ingredientes<span class="asteriskField">*</span></label> <div class="">{{ form.ingredientes }}</div>
+                    <label for="id_ingredientes" class=" requiredField">Ingredientes<span class="asteriskField">*</span></label> <div class="">{{ form.ingredientes }}</div> 
                 </div>
+                <div class="add-more">
+                    <button class="btn btn-primary" type="button" id="add-ingredient">Adicionar novo ingrediente</button>
+                </div>
+
+
 
                 <label for="id_modo_de_preparo" class=" requiredField">Modo de preparo<span class="asteriskField">*</span> </label>
                 <div class="">{{ form.modo_de_preparo }}</div>
                 
 
-                
+                <label for="dica"><strong style="font-size: large;">Gostaria de adicionar uma dica?</strong></label><br>
+                <input type="radio" name="dica" value="nao" checked> Não
+                <input type="radio" name="dica" value="sim"> Sim<br>
+                <div id="inputDica" style="display: none;">{{ form.dica }}</div>
 
-                <label for="dica"><strong>Gostaria de adicionar uma dica?</strong></label> <br>
-                <input type="radio" id="dica-nao" name="dica" value="nao" onclick="mudarCss()" checked>
-                <label for="dica-nao">Não</label>
-                <input type="radio" id="dica-sim" name="dica" value="sim" onclick="mudarCss()">
-                <label for="dica-sim">Sim</label><br> 
-                {{ form.dica }}
+
                 <input class="btn btn-primary" type="submit" value="Criar">
             </form>
         </div>

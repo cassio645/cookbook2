@@ -7,16 +7,14 @@ from .models import Receita
 
 
 class ReceitaForm(forms.ModelForm):
-    ingredientes = SimpleArrayField(
-        forms.CharField(),
-        widget=Textarea(attrs={'placeholder': '3 xícaras de farinha;\n2 ovos;\n3 xícaras de leite'}),
-        error_messages={'item_invalid': 'Por favor remova o último ; '},
-        help_text="Separe os ingredientes usando ponto e vírgula ;", delimiter=";"
-    )
 
     class Meta:
         model = Receita
         fields = ["titulo", "categoria", "dificuldade", "rendimento", "ingredientes", "modo_de_preparo", 'dica']
+        widgets = {
+            'ingredientes': forms.TextInput(attrs={'placeholder': '3 xícaras de farinha'}),
+            'dica': forms.TextInput(attrs={'placeholder': 'Cozinhe em Fogo Baixo'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
