@@ -6,6 +6,28 @@ function deleteFunction(id, title){
     }
 }
 
+
+// Função adicionar Dica
+const dicaNao = document.querySelector('input[name="dica"][value="nao"]');
+const dicaSim = document.querySelector('input[name="dica"][value="sim"]');
+const inputDica = document.getElementById('inputDica');
+var text = document.getElementById('id_dica');
+
+
+function toggleinputDica() {
+    if (dicaSim.checked) {
+        inputDica.style.display = 'block';
+    } else {
+        text.value = '';
+        inputDica.style.display = 'none';        
+    }
+}
+
+dicaNao.addEventListener('change', toggleinputDica);
+dicaSim.addEventListener('change', toggleinputDica);
+
+
+
 // Função para editar imagem
 const opcaoNao = document.querySelector('input[name="opcao"][value="nao"]');
 const opcaoSim = document.querySelector('input[name="opcao"][value="sim"]');
@@ -21,24 +43,3 @@ function toggleImagemUpload() {
 
 opcaoSim.addEventListener('change', toggleImagemUpload);
 opcaoNao.addEventListener('change', toggleImagemUpload);
-
-
-// Função adicionar Dica
-const dicaNao = document.querySelector('input[name="dica"][value="nao"]');
-const dicaSim = document.querySelector('input[name="dica"][value="sim"]');
-const inputDica = document.getElementById('inputDica');
-
-function toggleinputDica() {
-    if (dicaSim.checked) {
-        inputDica.style.display = 'block';
-    } else {
-        inputDica.style.display = 'none';
-    }
-}
-
-dicaSim.addEventListener('change', toggleinputDica);
-dicaNao.addEventListener('change', toggleinputDica);
-
-
-dicaSim.addEventListener('change', toggleinputDica);
-dicaNao.addEventListener('change', toggleinputDica);

@@ -53,9 +53,9 @@
                     </a>
                         <div class="botoes">
                             <a href="{% url 'receitas:editar' pk=receita.id %}">
-                                <input type="submit" value="Editar" class="btn btn-warning" id="editar">
+                                <input type="submit" value="Editar" class="update_delete" id="editar">
                             </a>
-                            <button class="btn btn-danger" onclick="deleteFunction('{{receita.id}}', '{{receita.titulo}}')">Apagar</button>
+                            <button class="update_delete" onclick="deleteFunction('{{receita.id}}', '{{receita.titulo}}')">Apagar</button>
                         </div>
                     </div>
                 </div>

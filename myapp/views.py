@@ -66,7 +66,6 @@ def criar_view(request):
     # SE o método for um post carrega o formulário com as informações dele
     if request.method == 'POST':
         form = ReceitaForm(request.POST)
-        print(form)
 
         # Se o formulário for válido(preenchido corretamente)
         if form.is_valid():

@@ -55,9 +55,9 @@
                     <div class="">{{ form.modo_de_preparo }}</div>
                     
                     <label for="dica"><strong style="font-size: large;">Gostaria de adicionar uma dica?</strong></label><br>
-                    <input type="radio" name="dica" value="nao" checked> Não
-                    <input type="radio" name="dica" value="sim"> Sim<br>
-                    <div id="inputDica" style="display: none;">{{ form.dica }}</div>
+                    <input type="radio" name="dica" value="nao"> Não
+                    <input type="radio" name="dica" value="sim" checked> Sim<br>
+                    <div id="inputDica">{{ form.dica }}</div>
 
 
                     <input class="btn btn-primary" type="submit" value="Atualizar">

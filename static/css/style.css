@@ -86,8 +86,8 @@ body{
 
 /* Pagina inicial */
 
+
 .home-page{
-    padding-left: 2%;
     padding-top: 10px;
 }
 
@@ -96,45 +96,31 @@ body{
     float: left;
 }
 
-.blocos-receita{
-    display: inline-table;
-    padding-bottom: 5%;
-}
 
-.blocos-receita a:hover{
-    color:rgb(0, 0, 0);
-}
-
-.bloco-info-receita{
-    background-color: white;
-    border-right: 4px solid rgba(128, 128, 128, 0.200);
-    border-bottom: 4px solid rgba(128, 128, 128, 0.200);
-    border-radius: 5px;
-    padding: 5px;
-    width: 80%;
-    min-width: 40vh;
-    max-width: 80vh;
-    height: 70%;
-    text-align: center;
+.card {
+    max-width: 450px;
+    min-width: 250px;
+    height: 600px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: 0.3s;
 
 }
 
-.bloco-info-receita:hover{
-    border-right: 3px solid #242021;
-    border-bottom: 3px solid #242021;
-    border-radius: 5px;
+.card:hover {
+    border: 1px solid #312a29;
+    transform: translateY(-10px); 
 }
 
 .imagem-comida{
-    height: auto;
-    max-height: 40vh;
-    min-height: 35vh;
+    height: 40vh;
     width: 100%;
 }
 
 .titulo-comida{
     font-weight: 600;
     margin-top: 2%;
+    text-align: center;
     color: rgb(65, 49, 34);
 }
 
@@ -199,8 +185,11 @@ body{
 }
 
 .imagem-detail{
-    height: 90%;
-    width: 90%;
+    max-width: 900px;
+    max-height: 500px;
+
+    min-width: 600px;
+    min-height: 450px;
 }
 
 .detail-info{
@@ -316,14 +305,25 @@ table {
 }
 
 .botoes{
-    display: inline-block;
+    display: flex;
     text-align: center;
     width: 100%;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-#editar{
-    margin-right: 10%;
+.update_delete{
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: #312a29;
+    text-decoration: underline;
+
 }
+
+
 
 .sem-receita{
     padding-bottom: 10%;
@@ -394,4 +394,18 @@ footer img{
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+/* MOBILE */
+@media (max-width: 425px) {
+    .div-imagem-detail {
+        margin-right: 0;
+        margin-left: -15px;
+        margin-bottom: 15px;
+    }
+
+    .imagem-detail {
+        max-height: 300px;
+    }
 }

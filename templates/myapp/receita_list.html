@@ -5,60 +5,67 @@
 
 {% block content %}
 <img class="header-img" src="{% static 'img/head2.jpeg' %}">
+
+
 <div class="container-fluid home-page">
-        <div class="row">
-            <div class="col-md-16">
-                <h1 id="title-home">LISTA DE RECEITAS</h1>
-                <div class="div-search col-md-6">
-                    <h5 class="title-categoria">Categorias</h5>
-                        <div class="dropdown btn-drop">
-                            <button class="btn btn-primary dropdown-toggle  btn-block btn-md m-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-filter-right"></i> Filtrar
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                {% for cat in categorias %}
-                                <li><a class="dropdown-item link-categoria" href="{{ cat.get_absolute_url}}">
-                                    {{ cat.nome|title }}
-                                </a></li>
-                                {% endfor %}
-                            </ul>
-                          </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <h1 id="title-home">LISTA DE RECEITAS</h1>
+            <div class="div-search col-md-6">
+                <h5 class="title-categoria">Categorias</h5>
+                <div class="dropdown btn-drop">
+                    <button class="btn btn-primary dropdown-toggle btn-block btn-md m-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-filter-right"></i> Filtrar
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        {% for cat in categorias %}
+                        <li><a class="dropdown-item link-categoria" href="{{ cat.get_absolute_url}}">
+                            {{ cat.nome|title }}
+                        </a></li>
+                        {% endfor %}
+                    </ul>
                 </div>
-
             </div>
-            {% for receita in receitas %}
-                <div class="col-md-4 blocos-receita">
-                    <div class="bloco-info-receita">
-                    <a href="/{{receita.id}}/"><img src="{{ receita.imagem }}" class="imagem-comida"></a>
-
-                        <a href="/{{receita.id}}/">
-                            <p class="titulo-comida">{{receita.titulo| title}}</p>
-                            <hr>
-                            <table class="info-receita">
-                                <tr>
-                                    <td class="td-title">Categoria:</td>
-                                    <td>{{ receita.categoria|title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="td-title">Rendimento:</td>
+        </div>
+    </div>
+    <div class="row blocos-receita">
+        {% for receita in receitas %}
+        <div class="col-md-4"> <!-- Adicionei a classe mb-4 para adicionar espaçamento inferior entre os cards -->
+            <div class="card">
+                <a href="/{{receita.id}}/">
+                    <img src="{{ receita.imagem }}" class="card-img-top imagem-comida" alt="Imagem da Receita">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-comida">{{ receita.titulo|title }}</h5>
+                        <hr>
+                        <table class="table table-borderless info-receita">
+                            <tr>
+                                <td class="td-title">Categoria:</td>
+                                <td>{{ receita.categoria|title }}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-title">Rendimento:</td>
+                                <td>
                                     {% if receita.rendimento != 1 %}
-                                        <td>{{ receita.rendimento }} porções</td>
+                                    {{ receita.rendimento }} porções
                                     {% else %}
-                                        <td>{{ receita.rendimento }} porção</td>
+                                    {{ receita.rendimento }} porção
                                     {% endif %}
-                                </tr>                                <tr>
-                                    <td class="td-title">Dificuldade:</td>
-                                    <td>{{ receita.dificuldade|title }}</td>
-                                </tr>
-                            </table>
-                        </a>
-                    <p class="info-receita"><strong>Autor: </strong>{{receita.autor|title}}</p>
-                </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td-title">Dificuldade:</td>
+                                <td>{{ receita.dificuldade|title }}</td>
+                            </tr>
+                        </table>
+                        <p class="card-text info-receita"><strong>Autor: </strong>{{ receita.autor|title }}</p>
+                    </div>
+                </a>
             </div>
-            {% endfor %}
+        </div>
+        {% endfor %}
     </div>
 </div>
+
 
 {% if page_obj.has_previous or page_obj.has_next %}
     <div class="pagination">
