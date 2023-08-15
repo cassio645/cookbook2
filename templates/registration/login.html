@@ -16,7 +16,6 @@
             <form method="post">
                 {% csrf_token %}
                 {{form|crispy}}
-                <small><a href="{% url 'reset_password' %}">Esqueci minha senha</a></small><br>
                 <small>Não possui conta? Clique <a href="{% url 'cadastro' %}">aqui</a></small> <br>
                 <input type="submit" value="Entrar" class="btn btn-primary">
             </form>
