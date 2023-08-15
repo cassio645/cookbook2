@@ -96,13 +96,17 @@ body{
     float: left;
 }
 
+.lista-cards{
+    display: flex;
+    justify-content: center;
+}
 
 .card {
-    max-width: 450px;
-    min-width: 250px;
+    max-width: 400px;
+    min-width: 300px;
     height: 600px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin: 20px;
     transition: 0.3s;
 
 }
@@ -119,6 +123,7 @@ body{
 
 .titulo-comida{
     font-weight: 600;
+    font-size: 25px;
     margin-top: 2%;
     text-align: center;
     color: rgb(65, 49, 34);
@@ -126,7 +131,7 @@ body{
 
 .info-receita{
     text-align: left;
-    font-size: 15px;
+    font-size: 18px;
     padding-left: 1%;
     color: rgb(65, 49, 34)
 }
@@ -150,9 +155,10 @@ body{
     width: 30%;
     min-width: 250px;
     border: 3px solid #312a29;
+    border-radius: 4%;
     margin-bottom: 2%;
     margin-right: 5%;
-    padding: 3%;
+    padding: 2%;
     float:right;
 }
 .title-categoria{
@@ -179,38 +185,39 @@ body{
     padding-bottom: 2%;
 }
 
-.div-imagem-detail{
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .imagem-detail{
-    max-width: 900px;
-    max-height: 500px;
+    max-width: 850px;
+    max-height: 450px;
 
-    min-width: 600px;
-    min-height: 450px;
+    min-width: 580px;
+    min-height: 300px;
 }
 
 .detail-info{
-    margin-bottom: 2%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.detail-ingredientes{
+    padding: 50px;
+    background-color: #eca25d33;
+    border-radius: 4%;
 }
 
 table {
     width: 100%;
-    margin-bottom: 10px;
 }
 
 .tr-strong{
     font-weight: 600;
     padding-right: 3px;
 }
-
 .div-dica{
-    margin-bottom: 5%;
-    margin-top: 5%;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .modo-de-preparo{
+    margin-top: 10px;
     line-height: 1.6;
 }
 
@@ -399,13 +406,11 @@ footer img{
 
 /* MOBILE */
 @media (max-width: 425px) {
-    .div-imagem-detail {
-        margin-right: 0;
-        margin-left: -15px;
-        margin-bottom: 15px;
-    }
-
-    .imagem-detail {
-        max-height: 300px;
+    .imagem-detail{
+        max-width: 425px;
+        max-height: 350px;
+    
+        min-width: 400px;
+        min-height: 300px;
     }
 }

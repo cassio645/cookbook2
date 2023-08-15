@@ -5,36 +5,44 @@
 
 {% block content %}
 <div class="container">
-    <div class="row ">
+    <div class="row justify-content-center">
         <h1 class="titulo-detail">{{receita.titulo| title}}</h1>
-        <div class="div-imagem-detail col-sm-8">
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="div-imagem-detail col-md-8 d-flex align-items-center justify-content-center">
             <img class="imagem-detail img-fluid" src="{{ receita.imagem }}">
         </div>
-        
-        <div class="col-sm-6 detail-info">
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 detail-info">
             <h3>Informações: </h3>
             <hr>
             <p><strong>Autor:</strong> {{receita.autor|title}}</p>
             <table>
-                <tr class="tr-strong">
-                  <td>Dificuldade</td>
-                  <td>Rendimento</td>
-                  <td>Categoria</td>
-                </tr>
-                <tr>
-                <td>{{receita.dificuldade|title}}</td>
-                {% if receita.rendimento != 1 %}
-                    <td>{{ receita.rendimento }} porções</td>
-                {% else %}
-                    <td>{{ receita.rendimento }} porção</td>
-                {% endif %}
-                  <td>{{receita.categoria|title}}</td>
-                </tr>
-              </table>
+                <table>
+                    <tr class="tr-strong">
+                      <td>Dificuldade</td>
+                      <td>Rendimento</td>
+                      <td>Categoria</td>
+                    </tr>
+                    <tr>
+                    <td>{{receita.dificuldade|title}}</td>
+                    {% if receita.rendimento != 1 %}
+                        <td>{{ receita.rendimento }} porções</td>
+                    {% else %}
+                        <td>{{ receita.rendimento }} porção</td>
+                    {% endif %}
+                      <td>{{receita.categoria|title}}</td>
+                    </tr>
+                  </table>
+            </table>
         </div>
+    </div>
 
-
-        <div class="col-md-8">
+    <div class="row justify-content-center">
+        <div class="col-md-8 detail-ingredientes">
             <h3>Ingredientes:</h3>
             <hr>
             <ul>
@@ -43,22 +51,28 @@
                 {% endfor %}
             </ul>
         </div>
-        
+    </div>
 
+    <!-- Sem centralização -->
+    <div class="row"> 
         {% if receita.dica %}
-        <div class="col-sm-4 div-dica">
+        <div class="col-md-4 div-dica">
             <h5>Dica!!!</h5>
-             <p>{{ receita.dica }}</p>
+            <p>{{ receita.dica }}</p>
         </div>
         {% endif %}
+    </div>
 
+    <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3>Modo de Preparo:</h3>
-            <hr>
+  
             <div class="modo-de-preparo">
+                <h3>Modo de Preparo:</h3>
+                <hr>
                 {{receita.modo_de_preparo|safe}}
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
