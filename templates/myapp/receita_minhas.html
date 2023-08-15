@@ -3,9 +3,13 @@
 {% block title %}Minhas receitas{% endblock %}
 
 {% block content %}
+
+
 <div class="container-fluid minha-page">
     <div class="row">
-        <div class="col-md-16">
+
+        <!-- QUADRO COM AS INFORMAÇÕES DO USUÁRIO E SUAS RECEITAS -->
+        <div class="col-md-12">
             <div class="center">
                 <div class="col-md-6 perfil">
                     <h2>Sobre mim</h2>
@@ -29,37 +33,45 @@
             <h1 class="sem-receita">Você ainda não criou nenhuma receita.</h1>
         {% endif %}
 
-            {% for receita in receitas %}
-                <div class="col-md-4 blocos-receita">
-                    <div class="bloco-info-receita">
-                    <a href="/{{receita.id}}/"><img src="{{ receita.imagem }}" class="imagem-comida"></a>
-                        <a href="/{{receita.id}}/">
-                            <p class="titulo-comida">{{receita.titulo| title}}</p>
-                            <hr>
-                            <table class="info-receita">
-                                <tr>
-                                    <td class="td-title">Dificuldade:</td>
-                                    <td>{{ receita.dificuldade|title }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="td-title">Rendimento:</td>
+        <!-- LISTA DE CARDS DE RECEITAS DO USUÁRIO -->
+        {% for receita in receitas %}
+        <div class="col-md-4">
+            <div class="card">
+                <a href="/{{receita.id}}/">
+                    <img src="{{ receita.imagem }}" class="card-img-top imagem-comida" alt="Imagem da Receita">
+                    <div class="card-body">
+                        <h5 class="card-title titulo-comida">{{ receita.titulo|title }}</h5>
+                        <hr>
+                        <table class="table table-borderless info-receita">
+                            <tr>
+                                <td class="td-title">Dificuldade:</td>
+                                <td>{{ receita.dificuldade|title }}</td>
+                            </tr>
+                            <tr>
+                                <td class="td-title">Rendimento:</td>
+                                <td>
                                     {% if receita.rendimento != 1 %}
-                                        <td>{{ receita.rendimento|title}} porções</td>
+                                        {{ receita.rendimento|title }} porções
                                     {% else %}
-                                        <td>{{ receita.rendimento|title}} porção</td>
+                                        {{ receita.rendimento|title }} porção
                                     {% endif %}
-                                </tr>
-                            </table>
-                    </a>
-                        <div class="botoes">
-                            <a href="{% url 'receitas:editar' pk=receita.id %}">
-                                <input type="submit" value="Editar" class="update_delete" id="editar">
-                            </a>
-                            <button class="update_delete" onclick="deleteFunction('{{receita.id}}', '{{receita.titulo}}')">Apagar</button>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+                </a>
+                
+                <!-- BOTOES PARA EDITAR E DELETAR -->
+                <div class="botoes">
+                    <a href="{% url 'receitas:editar' pk=receita.id %}">
+                        <input type="submit" value="Editar" class="update_delete" id="editar">
+                    </a>
+                    <button class="update_delete" onclick="deleteFunction('{{receita.id}}', '{{receita.titulo}}')">Apagar</button>
                 </div>
-            {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+    
         </div>
     </div>
 

@@ -14,6 +14,7 @@
                     <div id="div_id_titulo" class="form-group"> <label for="id_titulo" class=" requiredField">
                         Titulo<span class="asteriskField">*</span> </label> <div class=""> {{ form.titulo }} </div> </div>
 
+                        
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="id_dificuldade" class="requiredField">Dificuldade<span class="asteriskField">*</span></label>
@@ -38,6 +39,7 @@
                         <input type="file" name="file" class="form-control col-md-3" id="file">
                     </div>
                     
+
                     <div id="div_id_ingredientes" class="form-group"> 
                         <label for="id_ingredientes" class=" requiredField">Ingredientes<span class="asteriskField">*</span></label>        
                         {% for ingrediente in receita.ingredientes %}
@@ -45,15 +47,16 @@
                         {% endfor %}
                     </div>
 
+
                     <div class="add-more">
                         <button class="btn btn-primary" type="button" id="add-ingredient">Adicionar novo ingrediente</button>
                     </div>
 
 
-
                     <label for="id_modo_de_preparo" class=" requiredField">Modo de preparo<span class="asteriskField">*</span> </label>
                     <div class="">{{ form.modo_de_preparo }}</div>
                     
+
                     <label for="dica"><strong style="font-size: large;">Gostaria de adicionar uma dica?</strong></label><br>
                     <input type="radio" name="dica" value="nao"> Não
                     <input type="radio" name="dica" value="sim" checked> Sim<br>

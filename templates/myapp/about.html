@@ -1,18 +1,54 @@
 {% extends 'base.html' %}
-{% block title %}Sobre{% endblock %}
+{% block title %}Sobre {% endblock %}
 
 {% block content %}
-<div class="col-md-8 sobre">
-    <h1>Sobre</h1>
-    <p>Site de receitas, onde você pode criar e compartilhar as suas.</p>
-    <h3>Usando: </h3>
-    <ul>
-        <li>Html/css/Bootstrap nos templates.</li>
-        <li>Postgresql - Usando ArrayField para os ingredientes.</li>
-        <li>Django - Todo projeto criado em Django 3.2</li>
-        <li>Aws - Para as imagens.</li>
-        <li>JavaScript - Para deletar receitas.</li>
-    </ul>
-    <span>By: <a href="https://github.com/cassio645">CASSIO645</a></span>
-</div>
+
+    <div class="conteiner" style="margin-top: 50px;">
+            
+            <div class="row">
+                <div class="col-md-8" style="margin-left: 2%;">
+                    <section>
+                        <h2>Visão Geral do Projeto</h2>
+                        <p>O website de Receitas foi desenvolvido utilizando o framework Django, com o propósito duplo de evidenciar minhas habilidades no uso desse framework e de proporcionar aos usuários um espaço dedicado para compartilhar e explorar receitas deliciosas.</p>
+                    </section>
+                    <section>
+                        <h2>Tecnologias Utilizadas</h2>
+                        <p><strong>Linguagens de Programação:</strong> Python, JavaScript<br>
+                        <strong>Frameworks:</strong> Django, Bootstrap<br>
+                        <strong>Páginas Web:</strong> HTML, CSS<br>
+                        <strong>Banco de dados:</strong> PostgreSQL<br>
+                        <strong>Serviços Online:</strong> ImageKit.io</p>
+                    </section>
+                    <section>
+                        <h2>Rotas do Site</h2>
+                        <h5>Principal</h5>
+                        <ul>
+                            <li>Home - Mostra a lista de cards das receitas já criadas por todos os usuários</li>
+                            <li>Detail - Mostra todos os detalhes de uma receita específica</li>
+                            <li>Criar - Permite que o usuário crie uma nova receita preenchendo um formulário</li>
+                            <li>Minhas Receitas - Mostra apenas as receitas criadas pelo usuário, com opções de edição e exclusão</li>
+                            <li>Editar - Permite que o usuário corrija erros ou adicione mais informações às receitas criadas</li>
+                        </ul>
+                        <h5>Registro</h5>
+                        <ul>
+                            <li>Login - Tela de login, para o usuário logar, permitindo acesso ao cadastro caso não tenha conta</li>
+                            <li>Cadastro - Formulário de criação de usuário</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>API de Imagens</h2>
+                        <p>Incorporei a API de imagens fornecida pelo ImageKit.io para gerenciar de forma eficiente todas as imagens em nosso site.</p>
+                    </section>
+                    <div>
+                        <ul class="social-links">
+                            <li><a target="_blank" href="https://github.com/cassio645">Códigos do projeto.</a></li>
+                            <li><a target="_blank" href="https://github.com/cassio645/cookbook2">Github</a></li>
+                            <li><a target="_blank" href="https://www.linkedin.com/in/cassio645/">Linkedin</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+
 {% endblock %}

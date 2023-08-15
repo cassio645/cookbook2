@@ -98,9 +98,12 @@ def criar_view(request):
 
 @login_required
 def editar_view(request, pk):
+
+    # Busca a receita específica com base na primary key(pk)
     receita = Receita.objects.get(pk=pk)
 
     if request.method == 'POST':
+        # Cria um form com os campos preenchidos da receita
         form = ReceitaForm(request.POST, instance=receita)
 
         if form.is_valid():

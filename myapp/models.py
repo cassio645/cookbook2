@@ -36,10 +36,13 @@ class Receita(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
+        # Ordena com base na data de criação da receita
         ordering = ["-created"]
 
     def __str__(self):
+        # Retorna o título da receita
         return self.titulo
     
     def get_absolute_url(self):
+        # Retorna a URL absoluta para a visualização detalhada da receita.
         return reverse('detalhe', kwargs={"pk": self.pk})

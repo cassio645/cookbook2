@@ -150,7 +150,6 @@ CKEDITOR_CONFIGS = {
 }
 
 # auth redirect
-
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'

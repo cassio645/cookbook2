@@ -28,9 +28,11 @@
             </div>
         </div>
     </div>
+
+    <!-- LISTA DE CARDS DAS RECEITAS CRIADAS -->
     <div class="row blocos-receita">
         {% for receita in receitas %}
-        <div class="col-md-4"> <!-- Adicionei a classe mb-4 para adicionar espaçamento inferior entre os cards -->
+        <div class="col-md-4">
             <div class="card">
                 <a href="/{{receita.id}}/">
                     <img src="{{ receita.imagem }}" class="card-img-top imagem-comida" alt="Imagem da Receita">
@@ -78,4 +80,5 @@
         {% endif %}
     </div>
 {% endif %}
+
 {% endblock %}

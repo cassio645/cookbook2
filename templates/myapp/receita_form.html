@@ -3,27 +3,6 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<style>
-    #div_id_dica{
-        display: none;
-        padding-top: 10px;
-    }
-</style>
-
-
-{% if form.errors %}
-    <div class="alert alert-danger">
-        <strong>Erros encontrados:</strong>
-        <ul>
-            {% for field_errors in form.errors %}
-                {% for error in field_errors %}
-                    <li>{{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-        </ul>
-    </div>
-{% endif %}
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 bloco-criar">
@@ -35,6 +14,7 @@
                 <div id="div_id_titulo" class="form-group"> <label for="id_titulo" class=" requiredField">
                     Titulo<span class="asteriskField">*</span> </label> <div class=""> {{ form.titulo }} </div> </div>
 
+                    
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="id_dificuldade" class="requiredField">Dificuldade<span class="asteriskField">*</span></label>
@@ -61,7 +41,6 @@
                 <div class="add-more">
                     <button class="btn btn-primary" type="button" id="add-ingredient">Adicionar novo ingrediente</button>
                 </div>
-
 
 
                 <label for="id_modo_de_preparo" class=" requiredField">Modo de preparo<span class="asteriskField">*</span> </label>
