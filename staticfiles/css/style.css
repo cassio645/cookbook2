@@ -92,7 +92,7 @@ body{
 }
 
 #title-home{
-    padding-top: 10px;
+    margin-top: 50px;
     float: left;
 }
 
@@ -100,7 +100,7 @@ body{
     max-width: 350px;
     min-width: 250px;
 
-    max-height: 520px;
+    max-height: 560px;
     min-height: 500px;
     cursor: pointer;
     margin: 30px; 
