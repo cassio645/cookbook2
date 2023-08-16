@@ -138,9 +138,24 @@ body{
 }
 
 .pagination{
-    margin-left: 50%;
-    margin-right: auto;
     font-size: 20px;
+    color:#242021;
+}
+
+/* Quando clica no pagination ele troca para estas cores.*/
+.pagination .page-item:not(.disabled) .page-link:hover {
+    background-color: #ceb780;
+    border-color: #ceb780;
+    color:#242021;
+}
+
+.pagination .page-item:not(.disabled) .page-link:focus {
+    box-shadow: none;
+}
+
+.pagination .page-item:not(.disabled) .page-link:active {
+    background-color: #452515;
+    border-color: #452515;
 }
 
 .pagination a{
@@ -170,6 +185,22 @@ body{
 
 .btn-drop{
     padding-left: 4px;
+}
+
+/* cores do botão de categoria */
+.dropdown-item:hover {
+    background-color: #ceb780;
+    color: white; 
+}
+
+.dropdown-item:focus {
+    background-color: inherit;
+    color: inherit;
+}
+
+.dropdown-item:active {
+    background-color: #452515;
+    color: white;
 }
 
 
