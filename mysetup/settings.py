@@ -140,8 +140,6 @@ CKEDITOR_CONFIGS = {
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList']},
             {'name': 'links', 'items': ['Link']},
-            {'name': 'styles', 'items': ['Format']},
-            '/',  # put this to force next toolbar on new line
         ],
         'toolbar': 'Custom',  # put selected toolbar config here
         'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
