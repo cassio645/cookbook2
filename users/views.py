@@ -15,7 +15,15 @@ class SignupView(View):
         # Cria um form com os dados do POST
         form = RegisterForm(data=request.POST)
         if form.is_valid():
-            form.save()
+
+            username = form.cleaned_data['username'].lower()  
+            form.cleaned_data['username'] = username  # Atualiza o valor no cleaned_data
+
+            # Define o nome de usuário em minúsculas e salva no banco de dados
+            user = form.save(commit=False) 
+            user.username = username  
+            user.save()
+
 
             # Mensagem após o registro bem-sucedido
             msg = "Você já pode fazer login"

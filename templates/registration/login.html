@@ -16,11 +16,27 @@
             <form method="post">
                 {% csrf_token %}
                 {{form|crispy}}
+
                 <small>Não possui conta? Clique <a href="{% url 'cadastro' %}">aqui</a></small> <br>
                 <input type="submit" value="Entrar" class="btn btn-primary">
             </form>
         </div>
     </div>
 </div>
+<script>
+    // Obtém a referência ao campo de entrada e ao contêiner
+var usernameInput = document.getElementById('id_username');
+var container = document.getElementById('div_id_username');
+
+// Cria o elemento <small>
+var smallElement = document.createElement('small');
+smallElement.textContent = 'Digite um nome de usuário em letras minúsculas.';
+smallElement.style.position = 'absolute';
+smallElement.style.marginTop = '-18px';
+
+// Adiciona o elemento <small> abaixo do campo de entrada
+container.insertAdjacentElement('beforeend', smallElement);
+
+</script>
 
 {% endblock %}
