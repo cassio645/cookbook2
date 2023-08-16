@@ -4,14 +4,21 @@
 
 {% block content %}
 
-
 <div class="container-fluid minha-page">
     <div class="row">
 
         <!-- QUADRO COM AS INFORMAÇÕES DO USUÁRIO E SUAS RECEITAS -->
         <div class="col-md-12">
-            <div class="center">
-                <div class="col-md-6 perfil">
+            <div class="row">
+                <div class="col-md-5"  id="title-minhas">
+                    {% if receitas %}
+                        <h1>MINHAS RECEITAS</h1>
+                    {% else %}
+                        <h1 class="sem-receita">Você ainda não criou nenhuma receita.</h1>
+                    {% endif %}
+                </div>
+
+                <div class="col-md-6 center perfil">
                     <h2>Sobre mim</h2>
                     <hr>
                     <table class="table-perfil">
@@ -27,12 +34,11 @@
                 </div>
             </div>
         </div>
-        {% if receitas %}
-            <h1 id="title-minhas">MINHAS RECEITAS</h1>
-        {% else %}
-            <h1 class="sem-receita">Você ainda não criou nenhuma receita.</h1>
-        {% endif %}
+    </div>
+</div>
 
+<div class="container-fluid">
+    <div class="row justify-content-center">
         <!-- LISTA DE CARDS DE RECEITAS DO USUÁRIO -->
         {% for receita in receitas %}
         <div class="col-md-4">

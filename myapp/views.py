@@ -5,7 +5,6 @@ from django.shortcuts import redirect, get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from .helpers import ImagekitClient, ImagekitDelete
-from django.urls import reverse_lazy
 
 from .models import Receita, Categoria
 from .forms import ReceitaForm
@@ -162,3 +161,10 @@ def delete_receita(request, pk):
 
 def sobre(request):
     return render(request, 'myapp/about.html')
+
+
+def page_not_found(request, *args, **kwargs):
+    return render(request, '404.html', status=404)
+
+def server_error(request, *args, **kwargs):
+    return render(request, '500.html', status=500)
