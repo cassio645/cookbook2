@@ -143,6 +143,8 @@ CKEDITOR_CONFIGS = {
         ],
         'toolbar': 'Custom',  # put selected toolbar config here
         'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
+        'height': '300px',
+        'width': '100%',
         'tabSpaces': 4     
     }
 }

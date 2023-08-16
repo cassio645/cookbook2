@@ -114,8 +114,7 @@ body{
 }
 
 .imagem-comida{
-    max-height: 300px;
-    min-height: 200px;
+    height: 35vh;
     width: 100%;
 }
 
@@ -251,6 +250,8 @@ table {
 
 .django-ckeditor-widget{
     display: inline !important;
+    height: 300px;
+    width: 100%;
 
 }
 #div_id_titulo{
@@ -400,11 +401,6 @@ footer img{
     
         min-width: 400px;
         min-height: 300px;
-    }
-
-    .imagem-comida {
-        height: 15vh;
-        width: 100%;
     }
 
     #title-minhas{

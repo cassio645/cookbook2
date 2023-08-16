@@ -114,8 +114,7 @@ body{
 }
 
 .imagem-comida{
-    max-height: 300px;
-    min-height: 200px;
+    height: 35vh;
     width: 100%;
 }
 
